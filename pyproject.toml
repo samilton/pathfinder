@@ -1,0 +1,44 @@
+[project]
+name = "pathfinder"
+version = "0.1.0"
+dependencies = [
+    "langchain",
+    "openai"
+]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "pathfinder"
+version = "0.1.0"
+description = ""
+authors = ["Sam Hamilton <samilton@elliottmgmt.com>"]
+readme = "README.md"
+packages = [{include = "pathfinder"}]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+
+[tool.poetry.dev-dependencies]
+black = "^23.3"
+pytest = "^7.0.0"
+mypy = "^0.971"
+
+[tool.black]
+line.length = 88
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
