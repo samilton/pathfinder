@@ -24,6 +24,7 @@ python = "^3.7"
 [tool.poetry.dev-dependencies]
 black = "^23.3"
 pytest = "^7.0.0"
+pytest-cov = "^3.0.0"
 mypy = "^0.971"
 
 [tool.black]

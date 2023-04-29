@@ -9,7 +9,7 @@ class LanguageModel(Protocol):
         return api_key
 
 
-class OpenAI:
+class OpenAI(LanguageModel):
     def configure(self, api_key: str) -> str:
         return api_key
 
