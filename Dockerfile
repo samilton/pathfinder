@@ -4,16 +4,17 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     curl \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && useradd -m app
 
 USER app
 
 RUN curl -sSL https://install.python-poetry.org | python3 -
 ENV PATH="${PATH}:${HOME}/.local/bin"
 
-WORKDIR /app
+WORKDIR /home/app
 
-COPY . /app
+COPY . .
 
 RUN poetry install
 
