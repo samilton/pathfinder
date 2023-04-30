@@ -1,0 +1,60 @@
+name: Build and Publish Docker Image
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Login to GitHub Packages
+      uses: docker/login-action@v2
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GHCR_PAT }}
+
+    - name: Setup Poetry
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.11"
+
+    - name: Install Poetry
+      uses: Gr1n/setup-poetry@v8
+      with:
+        poetry-version: "1.4.2"
+
+    - run: poetry --version
+
+    - name: Install dependencies
+      run: poetry install
+
+    - name: Run black
+      if: startsWith(github.ref, 'refs/heads/feature/') || startsWith(github.ref, 'refs/heads/bugfix/')
+      run: black .
+
+    - name: Run flake8
+      if: startsWith(github.ref, 'refs/heads/feature/') || startsWith(github.ref, 'refs/heads/bugfix/')
+      run: flake8
+
+    - name: Run pytest
+      run: poetry run pytest
+      continue-on-error: true
+
+    - name: Build and push Docker image
+      if: ${{ job.status == 'success' }}
+      uses: mr-smithers-excellent/docker-build-push@v6
+      with:
+        image: pathfinder
+        registry: ghcr.io
+        dockerfile: Dockerfile
+        username: ${{ github.actor }}
+        password: ${{ secrets.GHCR_PAT }}
+

@@ -19,13 +19,19 @@ readme = "README.md"
 packages = [{include = "pathfinder"}]
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.9"
+flake8 = "^6.0.0"
+
 
 [tool.poetry.dev-dependencies]
 black = "^23.3"
 pytest = "^7.0.0"
 pytest-cov = "^3.0.0"
 mypy = "^0.971"
+sphinx = "6.2.1"
+myst-parser = "1.0.0"
+sphinx_rtd_theme = "1.2.0"
+sphinxcontrib-mermaid = "0.8.1"
 
 [tool.black]
 line.length = 88
