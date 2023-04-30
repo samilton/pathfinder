@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
 USER app
 
 RUN curl -sSL https://install.python-poetry.org | python3 -
-ENV PATH="${PATH}:${HOME}/.local/bin"
+ENV PATH="${PATH}:/home/app/.local/bin"
 
 WORKDIR /home/app
 
