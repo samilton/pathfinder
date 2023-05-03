@@ -10,6 +10,7 @@ Welcome to pathfinder's documentation!
    :maxdepth: 2
 
    openai/openai.md
+   contributing/basic.md
 
 
 

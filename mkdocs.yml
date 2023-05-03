@@ -1,0 +1,21 @@
+site_name: Pathfinder
+
+theme:
+  name: "material"
+
+plugins:
+- search:
+- mkdocstrings:
+    handlers:
+      python:
+        paths: [src]
+
+nav:
+  - Index Page: index.md
+  - Reference: reference.md
+  - Configuration: config.md
+
+repo_url: https://github.com/samilton/pathfinder
+
+# to navigate with `/site` content correctly
+use_directory_urls: false

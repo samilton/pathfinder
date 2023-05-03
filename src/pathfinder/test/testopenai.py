@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from mypy.test.helpers import Suite, assert_equal
+
 from pathfinder.ai.openai import OpenAI
 
 
